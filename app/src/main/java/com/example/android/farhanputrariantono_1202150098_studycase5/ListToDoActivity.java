@@ -15,7 +15,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class ListToDoActivity extends AppCompatActivity {
-    //deklarasi variable yang akan digunakan
+    //deklarasi variable
     Database dbase;
     RecyclerView rv;
     Adapter adapter;
@@ -25,38 +25,31 @@ public class ListToDoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_to_do);
-        //set title menjadi To Do List
+
         setTitle("To Do List");
 
-        //mengakses recyclerview yang ada pada layout
+
         rv = findViewById(R.id.recview);
-        //membuat araylist baru
         datalist = new ArrayList<>();
-        //membuat database baru
         dbase = new Database(this);
-        //memanggil method readdata
         dbase.readdata(datalist);
 
-        //menginisialisasi shared preference
+
         SharedPreferences sharedP = this.getApplicationContext().getSharedPreferences("Preferences", 0);
         int color = sharedP.getInt("Colourground", R.color.white);
 
-        //membuat adapter baru
         adapter = new Adapter(this,datalist, color);
-        //menghindari perubahan ukuran yang tidak perlu ketika menambahkan / hapus item pada recycler view
         rv.setHasFixedSize(true);
-        //menampilkan layoutnya linier
         rv.setLayoutManager(new LinearLayoutManager(this));
-        //inisiasi adapter untuk recycler view
         rv.setAdapter(adapter);
 
-        //menjalankan method hapus data pada list to do
-        hapusgeser();
+
+        geserhapus();
     }
 
-    //membuat method untuk menghapus item pada to do list
-    public void hapusgeser(){
-        //membuat touch helper baru untuk recycler view
+
+    public void geserhapus(){
+
         ItemTouchHelper.SimpleCallback touchcall = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
             @Override

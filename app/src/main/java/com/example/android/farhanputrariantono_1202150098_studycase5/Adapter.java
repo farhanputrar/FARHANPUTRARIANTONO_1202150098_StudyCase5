@@ -14,7 +14,7 @@ import java.util.List;
 
 
 public class Adapter extends RecyclerView.Adapter<Adapter.holder> {
-    //deklarasi variable yang akan digunakan
+    //deklarasi variable
     private Context cntx;
     private List<AddDataActivity> list;
     int color;
@@ -26,16 +26,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.holder> {
         this.color=color;
     }
 
-    //menentukan viewholder untuk recyclerview
+
     @Override
     public holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //membuat view baru
+
         View view = LayoutInflater.from(cntx).inflate(R.layout.cardview_list, parent, false);
         holder hldr = new holder(view);
         return hldr;
     }
 
-    //menyetting nilai yang didapatkan pada viewholder
+
     @Override
     public void onBindViewHolder(holder holder, int position) {
         AddDataActivity data = list.get(position);
@@ -45,34 +45,34 @@ public class Adapter extends RecyclerView.Adapter<Adapter.holder> {
         holder.cardv.setCardBackgroundColor(cntx.getResources().getColor(this.color));
     }
 
-    //mendapatkan jumlah list
+
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    //mendapatkan list dari adapter
+
     public AddDataActivity getData(int position){
         return list.get(position);
     }
 
-    //untuk menghapus list pada todolist
+
     public void deleteData(int i){
-        //remove item yang terpilih
+
         list.remove(i);
-        //memberi notifikasi item yang di remove
+
         notifyItemRemoved(i);
         notifyItemRangeChanged(i, list.size());
     }
 
     class holder extends RecyclerView.ViewHolder{
-        //deklarasi variable yang akan digunakan
+
         public TextView ToDo, Description, Priority;
         public CardView cardv;
         public holder(View itemView){
             super(itemView);
 
-            //mengakses id text view pada layout dan juga cardview
+
             ToDo = itemView.findViewById(R.id.headline);
             Description = itemView.findViewById(R.id.explanation);
             Priority = itemView.findViewById(R.id.number);

@@ -31,7 +31,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("create table if not exists "+nama_tabel+" (todo varchar(35) primary key, description varchar(50), priority varchar(3))");
     }
 
-    //ketika database dibuat
+    //saat database dibuat
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table if not exists "+nama_tabel+" (todo varchar(35) primary key, description varchar(50), priority varchar(3))");
@@ -57,12 +57,12 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-    //menghapus data pada database
+
     public boolean removedata(String ToDo) {
         return db.delete(nama_tabel, kolom_1+"=\""+ToDo+"\"", null)>0;
     }
 
-    //mengakses dan membaca data dari database
+
     public void readdata(ArrayList<AddDataActivity> daftar){
         Cursor cursor = this.getReadableDatabase().rawQuery("select todo, description, priority from "+nama_tabel, null);
         while (cursor.moveToNext()){
